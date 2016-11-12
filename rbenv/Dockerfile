@@ -24,7 +24,7 @@ RUN echo 'eval "$(rbenv init -)"' >> ~/.bashrc
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -y \
  && apt-get install -y $BUILD_ONLY_PACKAGES \
     git \
- && rm -rf /var/lib/apt/list
+ && rm -rf /var/lib/apt/list/*
 
 # Install rbenv + ruby
 RUN git clone https://github.com/rbenv/rbenv.git ~/.rbenv \
