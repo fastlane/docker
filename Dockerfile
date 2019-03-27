@@ -1,4 +1,4 @@
-FROM circleci/ruby:2.3.4
+FROM circleci/ruby:2.3.4-node
 
 ENV XAR_VERSION "1.6.1"
 USER root
@@ -59,27 +59,6 @@ make install > /dev/null 2>&1 && \
 rm -rf ${BUILDDIR} 
 
 USER circleci
-
-# Install nvm
-ENV NVM_VERSION v0.33.11
-ENV NODE_VERSION v7.5.0
-ENV NVM_DIR /home/circleci/.nvm
-RUN mkdir $NVM_DIR
-RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
-
-ENV NODE_PATH $NVM_DIR/$NODE_VERSION/lib/node_modules
-ENV PATH $NVM_DIR/versions/node/$NODE_VERSION/bin:$PATH
-
-# Install node
-RUN echo "source $NVM_DIR/nvm.sh && \
-    nvm install $NODE_VERSION && \
-    nvm alias default $NODE_VERSION && \
-    nvm use default" | bash
-
-# Test results
-RUN echo $NODE_PATH
-RUN node --version
-RUN npm --version
 
 # Make xar
 RUN cd /tmp/xar \
