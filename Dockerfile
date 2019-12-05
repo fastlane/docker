@@ -1,14 +1,32 @@
 FROM circleci/ruby:2.4.5-node
 
-ENV XAR_VERSION "1.6.1"
+ENV XAR_VERSION "2.0.0"
 USER root
+
+# iTMSTransporter needs java installed
+# We also have to install make to install xar
+# And finally shellcheck
+RUN echo 'deb http://archive.debian.org/debian jessie-backports main' > /etc/apt/sources.list.d/jessie-backports.list \
+  && sed -i '/deb http:\/\/deb.debian.org\/debian jessie-updates main/d' /etc/apt/sources.list \
+  && apt-get -o Acquire::Check-Valid-Until=false update \
+  && apt-get install --yes \
+    make \
+    shellcheck \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get install --yes libssl-dev
 
 WORKDIR /tmp
 
+RUN ls
+
 # Build xar
-ADD https://github.com/downloads/mackyle/xar/xar-$XAR_VERSION.tar.gz .
-RUN tar -xzf xar-$XAR_VERSION.tar.gz \
-  && mv xar-$XAR_VERSION xar \
+# Original download location  https://github.com/downloads/mackyle/xar/xar-$XAR_VERSION.tar.gz
+# Now using a fastlane fork that supports OpenSSL 1.1.0
+ADD https://github.com/fastlane/xar/archive/$XAR_VERSION.tar.gz .
+RUN tar -xzf $XAR_VERSION.tar.gz \
+  && mv xar-$XAR_VERSION/xar xar \
   && cd xar \
   && ./autogen.sh --noconfigure \
   && ./configure \
@@ -27,20 +45,6 @@ ENV LC_ALL C.UTF-8
 
 # Required for iTMSTransporter to find Java
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/jre
-
-USER root
-
-# iTMSTransporter needs java installed
-# We also have to install make to install xar
-# And finally shellcheck
-RUN echo 'deb http://archive.debian.org/debian jessie-backports main' > /etc/apt/sources.list.d/jessie-backports.list \
-  && sed -i '/deb http:\/\/deb.debian.org\/debian jessie-updates main/d' /etc/apt/sources.list \
-  && apt-get -o Acquire::Check-Valid-Until=false update \
-  && apt-get install --yes \
-    make \
-    shellcheck \
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists/*
 
 # Install Python
 ARG BUILDDIR="/tmp/build"
