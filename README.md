@@ -1,6 +1,6 @@
 # fastlane-docker
 
-A `Dockerfile` that is used on _fastlane_'s CIs which is configured for Ruby 2.4.5, Python 3.6.8, and Java 8.
+A `Dockerfile` that is used on _fastlane_'s CIs which is configured for Ruby 2.6, Python 3.6.8, and Java 8.
 
 ## Publishing a new version
 
