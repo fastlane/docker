@@ -1,4 +1,4 @@
-FROM circleci/ruby:2.4.5-node
+FROM circleci/ruby:2.6-node
 
 ENV XAR_VERSION "2.0.0"
 USER root
