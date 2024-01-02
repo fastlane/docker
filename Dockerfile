@@ -6,8 +6,8 @@ USER root
 # iTMSTransporter needs java installed
 # We also have to install make to install xar
 # And finally shellcheck
-RUN echo 'deb http://archive.debian.org/debian jessie-backports main' > /etc/apt/sources.list.d/jessie-backports.list \
-  && sed -i '/deb http:\/\/deb.debian.org\/debian jessie-updates main/d' /etc/apt/sources.list \
+RUN echo 'deb http://archive.debian.org/debian stretch-backports main' > /etc/apt/sources.list.d/stretch-backports.list \
+  && sed -i '/deb http:\/\/deb.debian.org\/debian stretch-updates main/d' /etc/apt/sources.list \
   && apt-get -o Acquire::Check-Valid-Until=false update \
   && apt-get install --yes \
     make \
