@@ -1,17 +1,19 @@
 # fastlane-docker
+_A `Dockerfile` that is used on _fastlane_'s CIs for testing _fastlane_ on a Linux system with all dependencies._
 
-A `Dockerfile` that is used on _fastlane_'s CIs which is configured for Ruby 2.7, Python 3.6.8, and Java 8.
+### Tools included
 
-This is built to be used on a CI (primarly CircleCI) when needing to either test _fastlane_ on a Linux CI or test and deploy _fastlane_ docs using Linux. Using this `Dockerfile` is the most effecient way of using the required Ruby, Python, and Java versions for each build and keeping it consistent.
+- Ruby 3.3
+- Python 3.8.13
+- Java 21
+- NodeJS 20
+- Xar (for .pkg creation)
 
 ## Places being used
 
 - [fastlane/docs](https://github.com/fastlane/docs/blob/master/.circleci/config.yml)
 - [fastlane/fastlane](https://github.com/fastlane/fastlane/blob/master/.circleci/config.yml)
 
-## Publishing a new version
+## Publishing
 
-```
-docker build -t fastlanetools/ci:x.y.z ./
-docker push fastlanetools/ci:x.y.z
-```
+- Push a tag with the version you want to publish (`x.y.z`).
