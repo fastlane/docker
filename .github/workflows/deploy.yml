@@ -5,7 +5,7 @@ on:
     tags:
       - '**'
 env:
-  IMAGE_NAME: fastlanetools/ci
+  IMAGE_NAME: fastlanetoolsci/fastlane
 
 jobs:
   docker:
