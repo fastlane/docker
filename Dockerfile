@@ -1,4 +1,4 @@
-FROM cimg/ruby:3.3-node
+FROM cimg/ruby:3.4-node
 
 ENV XAR_VERSION="2.0.0"
 USER root
