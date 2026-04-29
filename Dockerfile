@@ -52,7 +52,7 @@ make install > /dev/null 2>&1 && \
 rm -rf ${BUILDDIR}
 
 # Install uv
-COPY --from=ghcr.io/astral-sh/uv:0.6.6 /uv /bin/uv
+COPY --from=ghcr.io/astral-sh/uv:0.11.7 /uv /bin/uv
 ENV UV_PYTHON_INSTALL_DIR=/opt/uv/python
 
 USER circleci
