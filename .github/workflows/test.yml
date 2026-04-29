@@ -29,6 +29,4 @@ jobs:
           docker run --rm fastlaneci:latest ruby --version
           docker run --rm fastlaneci:latest node --version
           docker run --rm fastlaneci:latest xar --version
-          docker run --rm fastlaneci:latest pip --version
-          docker run --rm fastlaneci:latest pipenv --version
           docker run --rm fastlaneci:latest uv --version
