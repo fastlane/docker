@@ -3,7 +3,7 @@ _A `Dockerfile` that is used on _fastlane_'s CIs for testing _fastlane_ on a Lin
 
 ### Tools included
 
-- Ruby 3.3
+- Ruby 3.4
 - Python 3.8.13
 - Java 21
 - NodeJS 20
