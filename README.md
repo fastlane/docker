@@ -4,7 +4,7 @@ _A `Dockerfile` that is used on _fastlane_'s CIs for testing _fastlane_ on a Lin
 ### Tools included
 
 - Ruby 3.4
-- Python 3.8.13
+- Python 3.12.14
 - Java 21
 - NodeJS 20
 - Xar (for .pkg creation)
