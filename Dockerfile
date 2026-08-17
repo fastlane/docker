@@ -40,7 +40,7 @@ ENV JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64/jre
 
 # Install Python
 ARG BUILDDIR="/tmp/build"
-ARG PYTHON_VER="3.8.13"
+ARG PYTHON_VER="3.12.14"
 WORKDIR ${BUILDDIR}
 
 RUN wget --quiet https://www.python.org/ftp/python/${PYTHON_VER}/Python-${PYTHON_VER}.tgz > /dev/null 2>&1 && \
@@ -52,7 +52,7 @@ make install > /dev/null 2>&1 && \
 rm -rf ${BUILDDIR}
 
 # Install uv
-COPY --from=ghcr.io/astral-sh/uv:0.11.7 /uv /bin/uv
+COPY --from=ghcr.io/astral-sh/uv:0.12.5 /uv /bin/uv
 ENV UV_PYTHON_INSTALL_DIR=/opt/uv/python
 
 USER circleci
